@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lista.lista_compras.dto.ItemDTO;
 import com.lista.lista_compras.entities.Item;
 import com.lista.lista_compras.repositories.ItemRepository;
 
@@ -15,7 +16,13 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public Item creaItem(Item item) {
+    public Item createItem(ItemDTO itemDTO) {
+        Item item = Item.builder()
+                .name(itemDTO.getName())
+                .quantity(itemDTO.getQuantity())
+                .checked(false)
+                .build();
+
         return itemRepository.save(item);
     }
 
